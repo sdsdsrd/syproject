@@ -2,15 +2,14 @@ package com.example.skbproject.service;
 
 import com.example.skbproject.dao.BtvDao;
 import com.example.skbproject.dto.BtvDto;
+import com.example.skbproject.dto.TopGenreDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class BtvService {
@@ -22,7 +21,9 @@ public class BtvService {
         return dao.getLog();
     }
 
-    public List<Integer> getTopGenre(int stbId, String now) {
+    public List<TopGenreDto> getTopGenre(int stbId, String now) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("stbId", stbId);
         String oneWeekAgoFrom = "";
         String oneWeekAgoTo = "";
         String twoWeekAgoFrom = "";
@@ -36,16 +37,21 @@ public class BtvService {
             calendar.add(Calendar.DAY_OF_WEEK, -7);
             calendar.add(Calendar.HOUR_OF_DAY, -1);
             oneWeekAgoFrom = dateFormat.format(calendar.getTime());
+            map.put("oneWeekAgoFrom", oneWeekAgoFrom);
             calendar.add(Calendar.HOUR_OF_DAY, 2);
             oneWeekAgoTo = dateFormat.format(calendar.getTime());
+            map.put("oneWeekAgoTo", oneWeekAgoTo);
             calendar.add(Calendar.DAY_OF_WEEK, -7);
             twoWeekAgoTo = dateFormat.format(calendar.getTime());
+            map.put("twoWeekAgoTo", twoWeekAgoTo);
             calendar.add(Calendar.HOUR_OF_DAY, -2);
             twoWeekAgoFrom = dateFormat.format(calendar.getTime());
+            map.put("twoWeekAgoFrom", twoWeekAgoFrom);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return dao.getTopGenre(stbId, oneWeekAgoFrom, oneWeekAgoTo, twoWeekAgoFrom, twoWeekAgoTo);
+
+        return dao.getTopGenre(map);
     }
 
     /*
