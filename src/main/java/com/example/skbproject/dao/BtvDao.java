@@ -10,6 +10,6 @@ import java.util.List;
 @Mapper
 public interface BtvDao {
     List<BtvDto> getLog();
-    List<String> getTopGenre(int dayOfWeek, String time);
-    List<String> getEpsdIdList(int dayOfWeek, String time);
+    List<Integer> getTopGenre(int stbId, String oneWeekAgoFrom, String oneWeekAgoTo, String twoWeekAgoFrom, String twoWeekAgoTo);
+    //List<String> getEpsdIdList(int stbId, String oneWeekAgoFrom, String oneWeekAgoTo, String twoWeekAgoFrom, String twoWeekAgoTo);
 }

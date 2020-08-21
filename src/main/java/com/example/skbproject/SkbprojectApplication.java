@@ -25,6 +25,9 @@ public class SkbprojectApplication {
         Resource[] res = new PathMatchingResourcePatternResolver().getResources("mappers/*Mapper.xml");
         sessionFactory.setMapperLocations(res);
 
+        Resource myBatisConfig = new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml");
+        sessionFactory.setConfigLocation(myBatisConfig);
+
         return sessionFactory.getObject();
     }
 }
