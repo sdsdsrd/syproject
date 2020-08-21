@@ -13,5 +13,5 @@ import java.util.Map;
 public interface BtvDao {
     List<BtvDto> getLog();
     List<TopGenreDto> getTopGenre(Map<String, Object> paramMap);
-    //List<String> getEpsdIdList(int stbId, String oneWeekAgoFrom, String oneWeekAgoTo, String twoWeekAgoFrom, String twoWeekAgoTo);
+    List<String> getEpsdIdList(Map<String, Object> paramMap);
 }
