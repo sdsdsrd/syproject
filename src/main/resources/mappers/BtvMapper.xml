@@ -6,7 +6,7 @@
 
     <select id="getLog" resultType="com.example.skbproject.dto.BtvDto">
         SELECT *
-        FROM sample_log
+        FROM live_log
 
     </select>
 

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class BtvDto {
-    private String stbId;
+    private int stbId;
     private String deviceBaseTime;
     private String title;
 }
