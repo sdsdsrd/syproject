@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.skbproject.dao.BtvDao">
+
+    <select id="getLog" resultType="com.example.skbproject.dto.BtvDto">
+        SELECT *
+        FROM sample_log
+
+    </select>
+
+    <select id="getTopGenre" resultType="string">
+        select genre
+        from top_genre
+        where day_of_week = #{dayOfWeek} and time = #{time}
+        limit 2;
+
+    </select>
+
+    <select id="getEpsdIdList" resultType="string">
+        select epsd_id
+        from content_genre
+        where genre = (select genre
+        from top_genre
+        where day_of_week = #{dayOfWeek} and time = #{time} limit 0,1) or
+        genre = (select genre
+        from top_genre
+        where day_of_week = #{dayOfWeek} and time = #{time} limit 1,1);
+
+    </select>
+
+</mapper>
