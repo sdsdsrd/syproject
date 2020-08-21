@@ -8,3 +8,11 @@ spring:
 mybatis:
   type-aliases-package: com.example.skbproject.dto
   mapper-locations: mappers/**/*.xml
+
+restTemplate:
+  factory:
+    readTimeout: 5000
+    connectTimeout: 3000
+  httpClient:
+    maxConnTotal: 100
+    maxConnPerRoute: 5
